@@ -3,11 +3,11 @@ import { StyleSheet, View, Text, TextInput, Button, ImageBackground, TouchableOp
 
 export default class Start extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       name: '',
-      bgColor: '#DCF8C6'
-    }
+      bgColor: '#DCF8C6' //light green
+    };
   }
 
   render() {
@@ -45,7 +45,12 @@ export default class Start extends Component {
                 />
               </View>
             </View>
-            <Button style={styles.button, { backgroundColor: this.state.bgColor }} title="Enter chat" onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, bgColor: this.state.bgColor })} />
+            <Button
+              accessible={true}
+              accessibilityLabel="Enter chat"
+              accessibilityHint="Takes you to the chat screen."
+              accessibilityRole="button"
+              style={styles.button, { backgroundColor: this.state.bgColor }} title="Enter chat" onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, bgColor: this.state.bgColor })} />
           </View>
         </ImageBackground>
       </View>
