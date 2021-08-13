@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Platform, KeyboardAvoidingView } from 'react-native';
+import { View, Platform, KeyboardAvoidingView } from 'react-native';
 import { GiftedChat, Bubble } from 'react-native-gifted-chat';
 
 const firebase = require('firebase');
@@ -27,22 +27,11 @@ export default class Chat extends Component {
     this.state = {
       messages: [],
       uid: 0,
-      bgColor: this.props.route.params.bgColor,
+      backgroundColor: this.props.route.params.backgroundColor,
     }
   }
 
   componentDidMount() {
-    // this.setState({
-    //   messages: [
-    //     {
-    //       _id: 2,
-    //       text: `Welcome to the chat ${this.props.route.params.name}!`,
-    //       createdAt: new Date(),
-    //       system: true,
-    //     },
-    //   ],
-    // });
-    // const { name } = this.props.route.params;
     this.authUnsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if (!user) {
         firebase.auth().signInAnonymously();
@@ -124,27 +113,19 @@ export default class Chat extends Component {
   }
 
   render() {
-    let { name } = this.props.route.params;
-    this.props.navigation.setOptions({ title: name });
+    this.props.navigation.setOptions({ title: `Welcome to Chataholic ${this.props.route.params.name}!` });
     return (
-      <View style={styles.container}>
+      <View style={{ flex: 1, backgroundColor: this.state.backgroundColor }}>
         <GiftedChat
           renderBubble={this.renderBubble.bind(this)}
           messages={this.state.messages}
-          onSend={(messages) => this.onSend(messages)}
+          onSend={messages => this.onSend(messages)}
           user={{
             _id: 1,
           }}
         />
-        {Platform.OS === 'android' ? (<KeyboardAvoidingView behavior="height" />) : null}
+        {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
       </View>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    // bgColor: this.state.bgColor,
-  }
-});

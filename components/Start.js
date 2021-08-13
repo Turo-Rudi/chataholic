@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, ImageBackground, TouchableOpacity } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, ImageBackground, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
 
 export default class Start extends Component {
   constructor(props) {
@@ -7,7 +7,7 @@ export default class Start extends Component {
     this.state = {
       name: '',
       bgColor: '#DCF8C6' //light green
-    };
+    }
   }
 
   render() {
@@ -29,19 +29,19 @@ export default class Start extends Component {
               <View style={styles.bgColor}>
                 <TouchableOpacity
                   style={styles.color1}
-                  onPress={() => this.setState({ bgColor: '#090C08' })}
+                  onPress={() => this.setState({ backgroundColor: '#090C08' })}
                 />
                 <TouchableOpacity
                   style={styles.color2}
-                  onPress={() => this.setState({ bgColor: '#474056' })}
+                  onPress={() => this.setState({ backgroundColor: '#474056' })}
                 />
                 <TouchableOpacity
                   style={styles.color3}
-                  onPress={() => this.setState({ bgColor: '#8A95A5' })}
+                  onPress={() => this.setState({ backgroundColor: '#8A95A5' })}
                 />
                 <TouchableOpacity
                   style={styles.color4}
-                  onPress={() => this.setState({ bgColor: '#B9C6AE' })}
+                  onPress={() => this.setState({ backgroundColor: '#B9C6AE' })}
                 />
               </View>
             </View>
@@ -50,7 +50,8 @@ export default class Start extends Component {
               accessibilityLabel="Enter chat"
               accessibilityHint="Takes you to the chat screen."
               accessibilityRole="button"
-              style={styles.button, { backgroundColor: this.state.bgColor }} title="Enter chat" onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, bgColor: this.state.bgColor })} />
+              style={styles.button, { backgroundColor: this.state.backgroundColor }} title="Enter chat" onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, backgroundColor: this.state.backgroundColor })} />
+            {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
           </View>
         </ImageBackground>
       </View>
