@@ -6,7 +6,7 @@ export default class Start extends Component {
     super(props);
     this.state = {
       name: '',
-      backgroundColor: '#DCF8C6' //light green
+      backgroundColor: '#bd903c'
     }
   }
 
@@ -142,12 +142,14 @@ const styles = StyleSheet.create({
     borderRadius: 25,
   },
   // button
+  button: {
+    borderRadius: 10,
+  },
   buttonText: {
     fontSize: 16,
     fontWeight: "600",
     color: 'black',
     textAlign: 'center',
     padding: 15,
-    borderRadius: 10,
   },
 });
