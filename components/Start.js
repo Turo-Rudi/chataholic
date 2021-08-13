@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text, TextInput, Button, ImageBackground, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { StyleSheet, View, Text, TextInput, ImageBackground, TouchableOpacity } from 'react-native';
 
 export default class Start extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: '',
-      bgColor: '#DCF8C6' //light green
+      backgroundColor: '#DCF8C6' //light green
     }
   }
 
@@ -29,33 +29,32 @@ export default class Start extends Component {
               <View style={styles.bgColor}>
                 <TouchableOpacity
                   style={styles.color1}
-                  onPress={() => this.setState({ backgroundColor: '#090C08' })}
+                  onPress={() => this.setState({ backgroundColor: '#bd903c' })}
                 />
                 <TouchableOpacity
                   style={styles.color2}
-                  onPress={() => this.setState({ backgroundColor: '#474056' })}
+                  onPress={() => this.setState({ backgroundColor: '#829356' })}
                 />
                 <TouchableOpacity
                   style={styles.color3}
-                  onPress={() => this.setState({ backgroundColor: '#8A95A5' })}
+                  onPress={() => this.setState({ backgroundColor: '#C2571A' })}
                 />
                 <TouchableOpacity
                   style={styles.color4}
-                  onPress={() => this.setState({ backgroundColor: '#B9C6AE' })}
-                />
+                  onPress={() => this.setState({ backgroundColor: '#9A2617' })}>
+                </TouchableOpacity>
               </View>
+
+              <TouchableOpacity
+                style={(styles.button, { backgroundColor: this.state.backgroundColor })} title="Enter chat"
+                onPress={() => { this.props.navigation.navigate('Chat', { name: this.state.name, backgroundColor: this.state.backgroundColor }) }} >
+                <Text style={styles.buttonText}> Enter Chataholic</Text>
+              </TouchableOpacity>
             </View>
-            <Button
-              accessible={true}
-              accessibilityLabel="Enter chat"
-              accessibilityHint="Takes you to the chat screen."
-              accessibilityRole="button"
-              style={styles.button, { backgroundColor: this.state.backgroundColor }} title="Enter chat" onPress={() => this.props.navigation.navigate('Chat', { name: this.state.name, backgroundColor: this.state.backgroundColor })} />
-            {Platform.OS === 'android' ? <KeyboardAvoidingView behavior="height" /> : null}
           </View>
         </ImageBackground>
       </View>
-    )
+    );
   }
 }
 
@@ -115,37 +114,40 @@ const styles = StyleSheet.create({
   bgColor: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    padding: 20,
   },
   // choosing background colors
   color1: {
-    backgroundColor: '#090C08',
+    backgroundColor: '#bd903c',
     width: 50,
     height: 50,
     borderRadius: 25,
   },
   color2: {
-    backgroundColor: '#474056',
+    backgroundColor: '#829356',
     width: 50,
     height: 50,
     borderRadius: 25,
   },
   color3: {
-    backgroundColor: '#8A95A5',
+    backgroundColor: '#C2571A',
     width: 50,
     height: 50,
     borderRadius: 25,
   },
   color4: {
-    backgroundColor: '#B9C6AE',
+    backgroundColor: '#9A2617',
     width: 50,
     height: 50,
     borderRadius: 25,
   },
   // button
-  button: {
+  buttonText: {
     fontSize: 16,
-    fontWeight: '600',
-    color: '#757083',
+    fontWeight: "600",
+    color: 'black',
     textAlign: 'center',
+    padding: 15,
+    borderRadius: 10,
   },
 });
