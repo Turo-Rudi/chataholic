@@ -48,7 +48,7 @@ export default class Start extends Component {
               <TouchableOpacity
                 style={(styles.button, { backgroundColor: this.state.backgroundColor })} title="Enter chat"
                 onPress={() => { this.props.navigation.navigate('Chat', { name: this.state.name, backgroundColor: this.state.backgroundColor }) }} >
-                <Text style={styles.buttonText}> Enter Chataholic</Text>
+                <Text style={styles.buttonText}>Enter Chataholic</Text>
               </TouchableOpacity>
             </View>
           </View>
